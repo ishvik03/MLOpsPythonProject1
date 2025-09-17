@@ -1,10 +1,12 @@
-import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+import os
+import sys
 
 from src.inference import load_pipeline
 
-#Any function starting with test_ will be automatically discovered and run by pytest.
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+
+# Any function starting with test_ will be automatically discovered and run by pytest.
 def test_inference_pipeline():
     pipe = load_pipeline()
     result = pipe("I love MLOps!")

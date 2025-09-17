@@ -1,43 +1,34 @@
-
-
-#OLD APPROACH WITHOUT THE CONFIG FILE ------
-#from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-
-
-# path = '/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/model_sharable'
-# def load_pipeline(model_dir= path):
-#     tokenizer = AutoTokenizer.from_pretrained(model_dir)
-#     model = AutoModelForSequenceClassification.from_pretrained(model_dir)
-#     return pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
-#
-# if __name__ == "__main__":
-#     classifier = load_pipeline()
-#     print(classifier("MLOps is amazing!"))
+# OLD APPROACH WITHOUT THE CONFIG FILE ------
 
 
 import logging
-import yaml
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 
+import yaml
+from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
+                          pipeline)
 
 # Logging configuration
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-config_path = '/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/config.yaml'
+config_path = "/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/config.yaml"
 
-def load_config(path= config_path):
-    #Opens your config.yaml(path mentioned)  file in read mode.
+
+def load_config(path=config_path):
+    # Opens your config.yaml(path mentioned)  file in read mode.
     # 'f' is a file object that lets Python read the raw text inside.
     with open(path, "r") as f:
         logging.info(f"Loading config from {path}")
         # raw YAML text and parses it into a Python dictionary
         return yaml.safe_load(f)
 
-# load_pipeline() is the function that loads your Hugging Face model + tokenizer
+
+# load_pipeline() is the function that loads
+# your Hugging Face model + tokenizer
 # and returns a pipeline object ready for inference.
+
+
 def load_pipeline():
     cfg = load_config()
     model_dir = cfg["model"]["path"]
@@ -48,11 +39,15 @@ def load_pipeline():
     device = 0 if cfg["model"]["device"].startswith("cuda") else -1
 
     logging.info(f"Loading tokenizer and model from {model_dir}")
+    logging.info(f"Loading model is used for the  task {task}")
 
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = AutoModelForSequenceClassification.from_pretrained(model_dir)
-    logging.info(f"Creating pipeline for task={task} on device={cfg['model']['device']}")
+    logging.info(
+        f"Creating pipeline for task={task} on device={cfg['model']['device']}"
+    )
     return pipeline(task, model=model, tokenizer=tokenizer, device=device)
+
 
 if __name__ == "__main__":
     cfg = load_config()
@@ -62,10 +57,6 @@ if __name__ == "__main__":
     ans = classifier(text)
     logging.info(f"Prediction result: {ans}")
     print(ans)  # still keep print for direct user feedback
-
-
-
-
 
 """
 # DOUBTS FOR LATER !!!
