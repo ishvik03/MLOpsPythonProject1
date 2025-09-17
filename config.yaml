@@ -1,15 +1,26 @@
 model:
   # relative path (portable across systems)
-  path: 'model_sharable'
+  path: "model_sharable"
 
-  task: "sentiment-analysis"       # task type (sentiment, text-classification, etc.)
-  device: "cpu"                    # "cpu" or "cuda:0" for GPU
-  hub_id : "distilbert/distilbert-base-uncased-finetuned-sst-2-english"g
+  # task type (sentiment, text-classification, etc.)
+  task: "sentiment-analysis"
+
+  # "cpu" or "cuda:0" for GPU
+  device: "cpu"
+
+  # Hugging Face Hub model id
+  hub_id: "distilbert/distilbert-base-uncased-finetuned-sst-2-english"
 
 logging:
-  level: "INFO"                    # DEBUG, INFO, WARNING, ERROR
-  save_logs: false                  # set true if you want logs written to a file
+  # DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+
+  # set true if you want logs written to a file
+  save_logs: false
 
 data:
-  sample_input: "MLOps is amazing!"  # default input for quick tests
-  batch_size: 1                     # useful if later you want batched inference
+  # default input for quick tests
+  sample_input: "MLOps is amazing!"
+
+  # useful if later you want batched inference
+  batch_size: 1
