@@ -20,7 +20,7 @@ model:
 data:
   sample_input: "I love learning MLOps!"
 
-▶️ Run
+▶️ Run-
 python src/inference/inference.py
 
 ![Build](https://github.com/ishvik03/ishvik03/MLOpsPythonProject1/actions/workflows/tests.yml/badge.svg)
