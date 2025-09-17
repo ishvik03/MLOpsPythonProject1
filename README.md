@@ -22,3 +22,6 @@ data:
 
 ▶️ Run
 python src/inference/inference.py
+
+
+[![codecov](https://codecov.io/github/ishvik03/MLOpsPythonProject1/graph/badge.svg?token=Q1RYPJV4RN)](https://codecov.io/github/ishvik03/MLOpsPythonProject1)
