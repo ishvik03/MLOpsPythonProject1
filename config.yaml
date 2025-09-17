@@ -1,6 +1,6 @@
 model:
   # relative path (portable across systems)
-  path: '/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/model_sharable'
+  path: 'model_sharable'
 
   task: "sentiment-analysis"       # task type (sentiment, text-classification, etc.)
   device: "cpu"                    # "cpu" or "cuda:0" for GPU
