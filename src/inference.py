@@ -12,6 +12,7 @@ logging.basicConfig(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_PATH = os.path.join(BASE_DIR, "config.yaml")
 
+
 # config_path = "/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/config.yaml"
 
 
@@ -31,21 +32,28 @@ def load_config(path= CONFIG_PATH):
 
 def load_pipeline():
     cfg = load_config()
-    model_dir = cfg["model"]["path"]
+    model_dir_config = cfg["model"]["path"]
     task = cfg["model"]["task"]
+    MODEL_DIR = os.path.join(BASE_DIR, model_dir_config)
 
     # Hugging Face uses -1 for CPU
     # Cuda for GPU, and the number mentioned with the GPU.
     device = 0 if cfg["model"]["device"].startswith("cuda") else -1
 
-    logging.info(f"Loading tokenizer and model from {model_dir}")
+    logging.info(f"Loading tokenizer and model from {MODEL_DIR}")
     logging.info(f"Loading model is used for the  task {task}")
 
-    tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
-    logging.info(
-        f"Creating pipeline for task={task} on device={cfg['model']['device']}"
-    )
+    if os.path.isdir(MODEL_DIR):
+        # Case 1: Local model exists (e.g., on your laptop where you saved model_sharable/)
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+        model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
+
+    else:
+        # Case 2: Local folder missing (e.g., GitHub Actions, or colleague doesn’t have it)
+        # → fallback to Hugging Face Hub using the hub_id in config.yaml
+        tokenizer = AutoTokenizer.from_pretrained(cfg["model"]["hub_id"])
+        model = AutoModelForSequenceClassification.from_pretrained(cfg["model"]["hub_id"])
+
     return pipeline(task, model=model, tokenizer=tokenizer, device=device)
 
 
