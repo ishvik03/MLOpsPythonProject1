@@ -1,0 +1,27 @@
+# Ignore model binaries
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+
+# Ignore model directories
+model_sharable/
+models/
+checkpoints/
+
+# Ignore datasets / large files
+data/
+*.csv
+*.tsv
+*.parquet
+
+# Ignore logs and outputs
+*.log
+logs/
+outputs/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
