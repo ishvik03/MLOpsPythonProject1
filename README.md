@@ -23,5 +23,5 @@ data:
 ▶️ Run
 python src/inference/inference.py
 
-
+![Build](https://github.com/ishvik03/ishvik03/MLOpsPythonProject1/actions/workflows/tests.yml/badge.svg)
 [![codecov](https://codecov.io/github/ishvik03/MLOpsPythonProject1/graph/badge.svg?token=Q1RYPJV4RN)](https://codecov.io/github/ishvik03/MLOpsPythonProject1)
