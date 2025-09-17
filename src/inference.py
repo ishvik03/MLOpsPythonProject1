@@ -43,14 +43,19 @@ def load_pipeline():
     logging.info(f"Loading tokenizer and model from {MODEL_DIR}")
     logging.info(f"Loading model is used for the  task {task}")
 
-    if os.path.isdir(MODEL_DIR):
-        # Case 1: Local model exists (e.g., on your laptop where you saved model_sharable/)
+    def has_model_files(folder):
+        """Check if folder exists and has model weight files."""
+        if not os.path.isdir(folder):
+            return False
+        expected_files = ["pytorch_model.bin", "model.safetensors"]
+        return any(os.path.exists(os.path.join(folder, f)) for f in expected_files)
+
+    if has_model_files(MODEL_DIR):
+        logging.info(f"📂 Using local model at {MODEL_DIR}")
         tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
         model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
-
     else:
-        # Case 2: Local folder missing (e.g., GitHub Actions, or colleague doesn’t have it)
-        # → fallback to Hugging Face Hub using the hub_id in config.yaml
+        logging.info(f"🌐 Local model missing → using Hugging Face Hub: {cfg["model"]["hub_id"]}")
         tokenizer = AutoTokenizer.from_pretrained(cfg["model"]["hub_id"])
         model = AutoModelForSequenceClassification.from_pretrained(cfg["model"]["hub_id"])
 
