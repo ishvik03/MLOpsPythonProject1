@@ -1,8 +1,5 @@
 # OLD APPROACH WITHOUT THE CONFIG FILE ------
-
-
 import logging
-
 import yaml
 from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
                           pipeline)
