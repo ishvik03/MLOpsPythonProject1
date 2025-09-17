@@ -1,0 +1,34 @@
+
+#When you type git commit, Git first collects all the staged files (the ones you added with git add).
+#A pre-commit hook is like a security guard at the door of the commit.
+#The hook checks: “Do these files follow our rules?”
+#If yes → commit goes through.
+#If no → it runs a tool (like Black) to fix them or stops the commit until you fix it.
+
+
+
+
+repos:
+  # Black: Python code autoformatter
+  - repo: https://github.com/psf/black #where to fetch the hook definition.
+    rev: 23.7.0   # specific version (consistent behavior)
+    hooks:
+      - id: black  # the actual hook inside that repo (runs the black formatter).
+
+  # isort: automatically sort imports
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort  # organize imports in a standard order
+
+  # flake8: linter for style issues, unused imports, PEP8 compliance
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8  # check code style, no auto-fix
+
+  # mypy: static type checker
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.5.1
+    hooks:
+      - id: mypy  # check type hints for correctness

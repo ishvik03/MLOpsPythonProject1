@@ -1,0 +1,6 @@
+transformers==4.56.0
+torch==2.8.0
+PyYAML==6.0.2
+
+# Optional: only needed for tests
+pytest==8.4.1

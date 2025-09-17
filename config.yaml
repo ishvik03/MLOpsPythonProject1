@@ -1,0 +1,14 @@
+model:
+  # relative path (portable across systems)
+  path: '/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/model_sharable'
+
+  task: "sentiment-analysis"       # task type (sentiment, text-classification, etc.)
+  device: "cpu"                    # "cpu" or "cuda:0" for GPU
+
+logging:
+  level: "INFO"                    # DEBUG, INFO, WARNING, ERROR
+  save_logs: false                  # set true if you want logs written to a file
+
+data:
+  sample_input: "MLOps is amazing!"  # default input for quick tests
+  batch_size: 1                     # useful if later you want batched inference
