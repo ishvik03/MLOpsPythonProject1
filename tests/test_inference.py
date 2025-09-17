@@ -1,9 +1,8 @@
 import os
 import sys
+
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.inference import load_pipeline
-
-
 
 
 # Any function starting with test_ will be automatically discovered and run by pytest.

@@ -1,5 +1,6 @@
 # OLD APPROACH WITHOUT THE CONFIG FILE ------
 import logging
+import os
 import yaml
 from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
                           pipeline)
@@ -8,11 +9,13 @@ from transformers import (AutoModelForSequenceClassification, AutoTokenizer,
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_PATH = os.path.join(BASE_DIR, "config.yaml")
 
-config_path = "/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/config.yaml"
+# config_path = "/Users/ishaangupta/PycharmProjects/MLOpsPythonProject1/config.yaml"
 
 
-def load_config(path=config_path):
+def load_config(path= CONFIG_PATH):
     # Opens your config.yaml(path mentioned)  file in read mode.
     # 'f' is a file object that lets Python read the raw text inside.
     with open(path, "r") as f:
