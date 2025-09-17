@@ -55,7 +55,7 @@ def load_pipeline():
         tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
         model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
     else:
-        logging.info(f"🌐 Local model missing → using Hugging Face Hub: {cfg["model"]["hub_id"]}")
+        logging.info(f"🌐 Local model missing → using Hugging Face Hub: {cfg['model']['hub_id']}")
         tokenizer = AutoTokenizer.from_pretrained(cfg["model"]["hub_id"])
         model = AutoModelForSequenceClassification.from_pretrained(cfg["model"]["hub_id"])
 
